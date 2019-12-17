@@ -1,44 +1,47 @@
 import React, { Component, Fragment } from "react";
+import axios from "axios";
 import { Container } from "semantic-ui-react";
+import { Divider } from "semantic-ui-react";
 
 class Fitness extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fitnesses: []
+    };
+    this.renderFitness = this.renderFitness.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("load", this.renderFitness);
+    window.addEventListener("click", this.renderFitness);
+  }
+
+  renderFitness() {
+    axios
+      .get("http://localhost:3001/articles/fitness")
+      .then(response => {
+        console.log(response);
+        this.setState({ fitnesses: response.data });
+      })
+      .catch(error => console.log(error));
+  }
+
   render() {
     return (
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Fitness</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-            aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-            imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
-            link mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
-            elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo
-            ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam
-            lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
-            viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-            imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper
-            ultricies nisi.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-            aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-            imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
-            link mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
-            elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo
-            ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam
-            lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
-            viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-            imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper
-            ultricies nisi.
-          </p>
+          {this.state.fitnesses.map(fitness => {
+            return (
+              <div>
+                <h3>{fitness.title}</h3>
+                <p>{fitness.content}</p>
+                <Divider />
+              </div>
+            );
+          })}
+          ;
         </Container>
       </Fragment>
     );
