@@ -9,15 +9,9 @@ class Fitness extends Component {
     this.state = {
       fitnesses: []
     };
-    this.renderFitness = this.renderFitness.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("load", this.renderFitness);
-    window.addEventListener("click", this.renderFitness);
-  }
-
-  renderFitness() {
     axios
       .get("http://localhost:3001/articles/fitness")
       .then(response => {
@@ -41,7 +35,6 @@ class Fitness extends Component {
               </div>
             );
           })}
-          ;
         </Container>
       </Fragment>
     );

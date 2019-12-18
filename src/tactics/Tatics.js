@@ -9,15 +9,9 @@ class Tactics extends Component {
     this.state = {
       tactics: []
     };
-    this.renderTactics = this.renderTactics.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("load", this.renderTactics);
-    window.addEventListener("click", this.renderTactics);
-  }
-
-  renderTactics() {
     axios
       .get("http://localhost:3001/articles/tactics")
       .then(response => {
@@ -41,7 +35,6 @@ class Tactics extends Component {
               </div>
             );
           })}
-          ;
         </Container>
       </Fragment>
     );

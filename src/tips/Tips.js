@@ -9,15 +9,9 @@ class Tips extends Component {
     this.state = {
       tips: []
     };
-    this.renderTips = this.renderTips.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener("load", this.renderTips);
-    window.addEventListener("click", this.renderTips);
-  }
-
-  renderTips() {
     axios
       .get("http://localhost:3001/articles/tips")
       .then(response => {
@@ -41,7 +35,6 @@ class Tips extends Component {
               </div>
             );
           })}
-          ;
         </Container>
       </Fragment>
     );
