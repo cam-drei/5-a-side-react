@@ -13,7 +13,7 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3001/articles/articles")
+      .get("http://localhost:3001/categories")
       .then(response => {
         console.log(response);
         this.setState({ articles: response.data });

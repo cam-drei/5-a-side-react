@@ -13,7 +13,7 @@ class Tactics extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3001/articles/tactics")
+      .get("http://localhost:3001/categories/1")
       .then(response => {
         console.log(response);
         this.setState({ tactics: response.data });
