@@ -26,11 +26,15 @@ class Home extends Component {
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Home</h2>
-          {this.state.articles.map(article => {
+          {this.state.articles.map((article, index) => {
             return (
-              <div>
+              <div key={index}>
                 <h3>{article.title}</h3>
-                <p>{article.content}</p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: article.content
+                  }}
+                />
                 <Divider />
               </div>
             );

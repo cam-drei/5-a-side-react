@@ -26,9 +26,9 @@ class Tactics extends Component {
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Tactics</h2>
-          {this.state.tactics.map(tactic => {
+          {this.state.tactics.map((tactic, index) => {
             return (
-              <div>
+              <div key={index}>
                 <h3>{tactic.title}</h3>
                 <p>{tactic.content}</p>
                 <Divider />

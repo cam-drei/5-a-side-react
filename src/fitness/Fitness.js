@@ -26,9 +26,9 @@ class Fitness extends Component {
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Fitness</h2>
-          {this.state.fitnesses.map(fitness => {
+          {this.state.fitnesses.map((fitness, index) => {
             return (
-              <div>
+              <div key={index}>
                 <h3>{fitness.title}</h3>
                 <p>{fitness.content}</p>
                 <Divider />

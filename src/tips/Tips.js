@@ -26,11 +26,11 @@ class Tips extends Component {
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Tips</h2>
-          {this.state.tips.map(tips => {
+          {this.state.tips.map((tip, index) => {
             return (
-              <div>
-                <h3>{tips.title}</h3>
-                <p>{tips.content}</p>
+              <div key={index}>
+                <h3>{tip.title}</h3>
+                <p>{tip.content}</p>
                 <Divider />
               </div>
             );
