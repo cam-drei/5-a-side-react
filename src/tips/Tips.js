@@ -30,7 +30,11 @@ class Tips extends Component {
             return (
               <div key={index}>
                 <h3>{tip.title}</h3>
-                <p>{tip.content}</p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: tip.content
+                  }}
+                />
                 <Divider />
               </div>
             );

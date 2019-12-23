@@ -30,7 +30,11 @@ class Tactics extends Component {
             return (
               <div key={index}>
                 <h3>{tactic.title}</h3>
-                <p>{tactic.content}</p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: tactic.content
+                  }}
+                />
                 <Divider />
               </div>
             );

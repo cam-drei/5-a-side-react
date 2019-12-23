@@ -30,7 +30,11 @@ class Fitness extends Component {
             return (
               <div key={index}>
                 <h3>{fitness.title}</h3>
-                <p>{fitness.content}</p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: fitness.content
+                  }}
+                />
                 <Divider />
               </div>
             );
