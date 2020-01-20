@@ -3,13 +3,13 @@ import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 // import Truncate from "react-truncate";
-// import Article from "./article/Article.js";
-// import { Link } from "react-router-dom";
+import Article from "../article/Article.js";
+import { BrowserRouter, Switch, Link, Route } from "react-router-dom";
 
 // const date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
 const DATE_OPTIONS = {
   year: "numeric",
-  month: "long",
+  month: "short",
   day: "2-digit"
 };
 
@@ -23,14 +23,12 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3001/categories")
+      .get(`http://localhost:3001/categories`)
       .then(response => {
         console.log(response);
         this.setState({ articles: response.data });
       })
       .catch(error => console.log(error));
-    // console.log(new Intl.DateTimeFormat("en-US").format(date));
-    // console.log(Date.parse("2019-12-19T09:53:58.678Z"));
     // console.log(new Date("2019-12-19T09:53:58.678Z"));
   }
 
@@ -42,22 +40,33 @@ class Home extends Component {
           <p>
             Today is: {new Date().toLocaleDateString("en-US", DATE_OPTIONS)}
           </p>
+          <Divider />
 
           {this.state.articles.map((article, index) => {
             return (
               <div key={index}>
-                <h3>{article.title}</h3>
-
-                <p>
-                  <i>Source: {article.source}</i>
-                  <i>, </i>
-                  <i>
-                    {new Date(article.created_at).toLocaleDateString(
-                      "en-US",
-                      DATE_OPTIONS
-                    )}
-                  </i>
-                </p>
+                <BrowserRouter>
+                  <Link exact to={`/article/${article.id}`}>
+                    <h3>{article.title}</h3>
+                  </Link>
+                  <Switch>
+                    <Route
+                      exact
+                      path="/article/:id"
+                      component={Article}
+                    ></Route>
+                  </Switch>
+                  <p>
+                    <i>Source: {article.source}</i>
+                    <i>, </i>
+                    <i>
+                      {new Date(article.created_at).toLocaleDateString(
+                        "en-US",
+                        DATE_OPTIONS
+                      )}
+                    </i>
+                  </p>
+                </BrowserRouter>
 
                 {/* <Truncate
                   lines={3}

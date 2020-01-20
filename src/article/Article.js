@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-// import axios from "axios";
-// import { Container } from "semantic-ui-react";
+import axios from "axios";
+import { Container } from "semantic-ui-react";
 // import { Divider } from "semantic-ui-react";
 
 class Article extends Component {
@@ -8,20 +8,34 @@ class Article extends Component {
     super(props);
 
     this.state = {
-      article: this.props.location.state
+      article: {}
     };
   }
 
+  componentDidMount() {
+    axios
+      .get(`http://localhost:3001/articles/${this.props.match.params.id}`)
+      .then(response => {
+        console.log(response);
+        this.setState({ article: response.data });
+      })
+      .catch(error => console.log(error));
+  }
+
   render() {
-    let article = this.state.article;
     return (
       <Fragment>
-        <div key={article.id}>
+        <Container className="container text-inside">
           <div>
-            <p>{article.title}</p>
-            <p>{article.content}</p>
+            <h3>{this.state.article.title}</h3>
+
+            <div
+              dangerouslySetInnerHTML={{
+                __html: this.state.article.content
+              }}
+            />
           </div>
-        </div>
+        </Container>
       </Fragment>
     );
   }
