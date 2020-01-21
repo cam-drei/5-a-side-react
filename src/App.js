@@ -7,6 +7,7 @@ import Home from "./home/Home.js";
 import Tatics from "./tactics/Tatics.js";
 import Fitness from "./fitness/Fitness.js";
 import Tips from "./tips/Tips.js";
+import Article from "./article/Article.js";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path="/tatics" component={Tatics}></Route>
             <Route path="/fitness" component={Fitness}></Route>
             <Route path="/tips" component={Tips}></Route>
+            <Route path="/article/:id" component={Article}></Route>
           </Switch>
         </BrowserRouter>
       </Container>

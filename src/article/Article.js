@@ -13,6 +13,7 @@ class Article extends Component {
   }
 
   componentDidMount() {
+    // debugger;
     axios
       .get(`http://localhost:3001/articles/${this.props.match.params.id}`)
       .then(response => {

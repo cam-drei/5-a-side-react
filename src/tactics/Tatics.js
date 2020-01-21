@@ -2,6 +2,13 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+
+const DATE_OPTIONS = {
+  year: "numeric",
+  month: "short",
+  day: "2-digit"
+};
 
 class Tactics extends Component {
   constructor(props) {
@@ -26,15 +33,25 @@ class Tactics extends Component {
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Tactics</h2>
+          <Divider />
+
           {this.state.tactics.map((tactic, index) => {
             return (
               <div key={index}>
-                <h3>{tactic.title}</h3>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: tactic.content
-                  }}
-                />
+                <Link exact to={`/article/${tactic.id}`}>
+                  <h3>{tactic.title}</h3>
+                </Link>
+                <p>
+                  <i>Source: {tactic.source}</i>
+                  <i>, </i>
+                  <i>
+                    {new Date(tactic.created_at).toLocaleDateString(
+                      "en-US",
+                      DATE_OPTIONS
+                    )}
+                  </i>
+                </p>
+
                 <Divider />
               </div>
             );

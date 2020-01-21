@@ -3,8 +3,7 @@ import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 // import Truncate from "react-truncate";
-import Article from "../article/Article.js";
-import { BrowserRouter, Switch, Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // const date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
 const DATE_OPTIONS = {
@@ -45,48 +44,21 @@ class Home extends Component {
           {this.state.articles.map((article, index) => {
             return (
               <div key={index}>
-                <BrowserRouter>
-                  <Link exact to={`/article/${article.id}`}>
-                    <h3>{article.title}</h3>
-                  </Link>
-                  <Switch>
-                    <Route
-                      exact
-                      path="/article/:id"
-                      component={Article}
-                    ></Route>
-                  </Switch>
-                  <p>
-                    <i>Source: {article.source}</i>
-                    <i>, </i>
-                    <i>
-                      {new Date(article.created_at).toLocaleDateString(
-                        "en-US",
-                        DATE_OPTIONS
-                      )}
-                    </i>
-                  </p>
-                </BrowserRouter>
+                <Link exact to={`/article/${article.id}`}>
+                  <h3>{article.title}</h3>
+                </Link>
 
-                {/* <Truncate
-                  lines={3}
-                  ellipsis={
-                    <span>
-                      ... <a href="/link/to/article">Read more</a>
-                    </span>
-                  }
-                >
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: article.content
-                    }}
-                  />
-                </Truncate> */}
-                {/* <div
-                  dangerouslySetInnerHTML={{
-                    __html: article.content
-                  }}
-                /> */}
+                <p>
+                  <i>Source: {article.source}</i>
+                  <i>, </i>
+                  <i>
+                    {new Date(article.created_at).toLocaleDateString(
+                      "en-US",
+                      DATE_OPTIONS
+                    )}
+                  </i>
+                </p>
+
                 <Divider />
               </div>
             );
