@@ -3,12 +3,7 @@ import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-
-const DATE_OPTIONS = {
-  year: "numeric",
-  month: "short",
-  day: "2-digit"
-};
+import { DateOption } from "../components/Constants.js";
 
 class Tips extends Component {
   constructor(props) {
@@ -33,6 +28,8 @@ class Tips extends Component {
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Tips</h2>
+          <Divider />
+
           {this.state.tips.map((tip, index) => {
             return (
               <div key={index}>
@@ -46,7 +43,7 @@ class Tips extends Component {
                   <i>
                     {new Date(tip.created_at).toLocaleDateString(
                       "en-US",
-                      DATE_OPTIONS
+                      DateOption
                     )}
                   </i>
                 </p>

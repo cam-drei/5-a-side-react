@@ -2,15 +2,8 @@ import React, { Component, Fragment } from "react";
 import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
-// import Truncate from "react-truncate";
 import { Link } from "react-router-dom";
-
-// const date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
-const DATE_OPTIONS = {
-  year: "numeric",
-  month: "short",
-  day: "2-digit"
-};
+import { DateOption } from "../components/Constants.js";
 
 class Home extends Component {
   constructor(props) {
@@ -36,9 +29,7 @@ class Home extends Component {
       <Fragment>
         <Container className="container text-inside">
           <h2>This is Home</h2>
-          <p>
-            Today is: {new Date().toLocaleDateString("en-US", DATE_OPTIONS)}
-          </p>
+          <p>Today is: {new Date().toLocaleDateString("en-US", DateOption)}</p>
           <Divider />
 
           {this.state.articles.map((article, index) => {
@@ -54,7 +45,7 @@ class Home extends Component {
                   <i>
                     {new Date(article.created_at).toLocaleDateString(
                       "en-US",
-                      DATE_OPTIONS
+                      DateOption
                     )}
                   </i>
                 </p>

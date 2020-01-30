@@ -3,12 +3,7 @@ import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-
-const DATE_OPTIONS = {
-  year: "numeric",
-  month: "short",
-  day: "2-digit"
-};
+import { DateOption } from "../components/Constants.js";
 
 class Fitness extends Component {
   constructor(props) {
@@ -48,7 +43,7 @@ class Fitness extends Component {
                   <i>
                     {new Date(fitness.created_at).toLocaleDateString(
                       "en-US",
-                      DATE_OPTIONS
+                      DateOption
                     )}
                   </i>
                 </p>
