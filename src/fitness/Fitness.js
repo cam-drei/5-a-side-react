@@ -15,7 +15,7 @@ class Fitness extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3001/categories/2")
+      .get(`http://localhost:3001/categories/2`)
       .then(response => {
         console.log(response);
         this.setState({ fitnesses: response.data });

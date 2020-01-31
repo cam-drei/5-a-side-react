@@ -15,7 +15,7 @@ class Tips extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3001/categories/3")
+      .get(`http://localhost:3001/categories/3`)
       .then(response => {
         console.log(response);
         this.setState({ tips: response.data });
