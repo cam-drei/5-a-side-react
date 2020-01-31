@@ -3,22 +3,23 @@ import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { DateOption } from "../components/Constants.js";
+import { DateOption } from "./Constants.js";
 
-class Fitness extends Component {
+class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fitnesses: []
+      articles: []
     };
   }
 
   componentDidMount() {
+    const { catId } = this.props;
     axios
-      .get(`http://localhost:3001/categories/2`)
+      .get(`http://localhost:3001/categories/${catId}`)
       .then(response => {
         console.log(response);
-        this.setState({ fitnesses: response.data });
+        this.setState({ articles: response.data });
       })
       .catch(error => console.log(error));
   }
@@ -27,21 +28,21 @@ class Fitness extends Component {
     return (
       <Fragment>
         <Container className="container text-inside">
-          <h2>This is Fitness</h2>
+          <h2>This is artarticles</h2>
           <Divider />
 
-          {this.state.fitnesses.map((fitness, index) => {
+          {this.state.articles.map((article, index) => {
             return (
               <div key={index}>
-                <Link exact to={`/article/${fitness.id}`}>
-                  <h3>{fitness.title}</h3>
+                <Link exact to={`/article/${article.id}`}>
+                  <h3>{article.title}</h3>
                 </Link>
 
                 <p>
-                  <i>Source: {fitness.source}</i>
+                  <i>Source: {article.source}</i>
                   <i>, </i>
                   <i>
-                    {new Date(fitness.created_at).toLocaleDateString(
+                    {new Date(article.created_at).toLocaleDateString(
                       "en-US",
                       DateOption
                     )}
@@ -57,4 +58,4 @@ class Fitness extends Component {
   }
 }
 
-export default Fitness;
+export default Category;

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { DateOption } from "../components/Constants.js";
+import { DateOption } from "./Constants.js";
 
 class Home extends Component {
   constructor(props) {

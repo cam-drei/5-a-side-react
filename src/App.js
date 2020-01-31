@@ -3,17 +3,14 @@ import "./App.css";
 import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import { Container, Input } from "semantic-ui-react";
 
-import Home from "./home/Home.js";
-import Tactics from "./tactics/Tactics.js";
-import Fitness from "./fitness/Fitness.js";
-import Tips from "./tips/Tips.js";
-import Article from "./article/Article.js";
-// import Categories from "./components/Categories.js";
+import Home from "./components/Home.js";
+import Article from "./components/Article.js";
+import Category from "./components/Category.js";
 
 const NAVIGATION_MENU = [
-  { route: "/tactics", text: "Tactics", component: Tactics },
-  { route: "/fitness", text: "Fitness", component: Fitness },
-  { route: "/tips", text: "Tips", component: Tips }
+  { route: "/tactics", text: "Tactics", catId: 1 },
+  { route: "/fitness", text: "Fitness", catId: 2 },
+  { route: "/tips", text: "Tips", catId: 3 }
 ];
 
 function App() {
@@ -37,21 +34,25 @@ function App() {
                   </li>
                 );
               })}
+
               <li className="nav-search">
                 <Input icon="search" placeholder="Search..." />
               </li>
             </ul>
           </div>
           <Switch>
+            {/* <Route path="/home" render={() => <div>Home</div>} /> */}
+
             <Route exact path="/" component={Home}></Route>
             <Route path="/article/:id" component={Article}></Route>
+
             {NAVIGATION_MENU.map((item, index) => {
               return (
                 <Route
                   key={index}
                   path={item.route}
-                  component={item.component}
-                ></Route>
+                  render={() => <Category catId={item.catId} />}
+                />
               );
             })}
           </Switch>
