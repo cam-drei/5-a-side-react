@@ -27,8 +27,14 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
+        {/* <div className="main-background">
+          <Image src="/images/black_background.jpg" />
+          <div className="background-text-block">
+            <h1>This is my blog</h1>
+            <h3>Welcome</h3>
+          </div>
+        </div> */}
         <Container className="container text-inside">
-          <h2>This is Home</h2>
           <p>Today is: {new Date().toLocaleDateString("en-US", DateOption)}</p>
           <Divider />
 

@@ -28,7 +28,7 @@ class Category extends Component {
     return (
       <Fragment>
         <Container className="container text-inside">
-          <h2>This is artarticles</h2>
+          <p>Today is: {new Date().toLocaleDateString("en-US", DateOption)}</p>
           <Divider />
 
           {this.state.articles.map((article, index) => {

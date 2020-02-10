@@ -1,7 +1,9 @@
 .navigation {
   list-style: none;
   margin: 0;
-  background: #c6cebd;
+  /* background: grey; */
+  background: whitesmoke;
+
   display: flex;
   font-weight: bold;
   padding-inline-start: 0px;
@@ -14,17 +16,18 @@
   color: black;
 }
 .navigation a:hover {
-  background: #8cc63e;
+  background: rgb(73, 73, 73);
   color: white;
 }
 
 .navigation .active {
-  background: #00421e;
+  background: black;
   color: white;
 }
 
 .container {
   background: whitesmoke;
+  min-height: 800px;
 }
 
 .text-inside {
@@ -42,3 +45,21 @@
 .ui.input > input {
   border-radius: 20px;
 }
+
+/* .main-background {
+  position: relative;
+  width: 100%;
+}
+
+.background-text-block {
+  position: absolute;
+  opacity: 60%;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+} */
