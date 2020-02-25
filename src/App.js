@@ -7,8 +7,11 @@ import {
   NavLink,
   Redirect
 } from "react-router-dom";
+
 import { Container } from "semantic-ui-react";
-import { Input, Icon } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
+
 import Home from "./components/Home.js";
 import Article from "./components/Article.js";
 import Category from "./components/Category.js";
@@ -25,10 +28,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { results: [], value: "" };
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handlePressEnter = this.handlePressEnter.bind(this);
+    this.onChangeValue = this.onChangeValue.bind(this);
   }
 
-  handleKeyPress = e => {
+  handlePressEnter = e => {
     if (e.key === "Enter") {
       this.setState({ value: e.target.value });
       axios
@@ -36,7 +40,6 @@ class App extends Component {
         .then(response => {
           // debugger;
           this.setState({
-            isLoading: false,
             results: response.data
           });
         });
@@ -44,7 +47,19 @@ class App extends Component {
     }
   };
 
+  emitEmpty = () => {
+    this.valueInput.focus();
+    this.setState({ results: [], value: "" });
+  };
+
+  onChangeValue = (e, { value }) => {
+    this.setState({ value: e.target.value });
+  };
+
   render() {
+    const { value } = this.state;
+    // const { results } = this.state;
+
     return (
       <Fragment>
         <Container className="container">
@@ -68,22 +83,25 @@ class App extends Component {
 
                 <li className="nav-search">
                   <Input
-                    placeholder="Search..."
+                    placeholder="Search for article ..."
                     icon="search"
-                    ref="search"
+                    name="word"
                     type="text"
-                    onKeyPress={this.handleKeyPress}
+                    value={value}
+                    onChange={this.onChangeValue}
+                    onKeyPress={this.handlePressEnter}
+                    ref={input => (this.valueInput = input)}
                   />
-                  <Icon
-                    onClick={() => this.setState({ results: [], value: "" })}
-                    circular
-                    name="close"
-                  />
+                  <Icon circular name="close" onClick={this.emitEmpty} />
+
                   <div>
+                    {/* {this.state.value.length > 0 && ( */}
+                    {/* {this.handlePressEnter && ( */}
                     {this.state.value.length > 0 && (
                       <Redirect
                         to={{
                           pathname: "/results",
+                          search: `?word=${value}`,
                           state: {
                             results: this.state.results,
                             value: this.state.value
@@ -95,13 +113,12 @@ class App extends Component {
                 </li>
               </ul>
             </div>
+
             <Switch>
               {/* <Route path="/home" render={() => <div>Home</div>} /> */}
-
               <Route exact path="/" component={Home}></Route>
               <Route path="/article/:id" component={Article}></Route>
               <Route path="/results" component={Results}></Route>
-
               {NAVIGATION_MENU.map((item, index) => {
                 return (
                   <Route

@@ -77,3 +77,19 @@ class SearchField extends Component {
 }
 
 export default SearchField;
+
+// import { If, Then, ElseIf, Else } from "react-if-elseif-else-render";
+
+/* <If condition={this.handlePressEnter && this.state.value.length > 0}>
+  <Then>
+    <Redirect
+      to={{
+        pathname: "/results",
+        state: {
+          results: this.state.results,
+          value: this.state.value
+        }
+      }}
+    />
+  </Then>
+</If>; */
