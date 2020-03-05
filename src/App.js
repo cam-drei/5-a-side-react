@@ -11,13 +11,11 @@ import {
 import { Container } from "semantic-ui-react";
 import { Input } from "semantic-ui-react";
 import { Icon } from "semantic-ui-react";
-
 import Home from "./components/Home.js";
 import Article from "./components/Article.js";
 import Category from "./components/Category.js";
 import Results from "./components/Results.js";
 import axios from "axios";
-// import { If, Then, ElseIf } from "react-if-elseif-else-render";
 
 const NAVIGATION_MENU = [
   { route: "/tactics", text: "Tactics", catId: 1 },
@@ -28,18 +26,21 @@ const NAVIGATION_MENU = [
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { results: [], value: "" };
+    this.state = {
+      results: [],
+      value: "",
+      isEnter: false
+    };
     this.handlePressEnter = this.handlePressEnter.bind(this);
     this.onChangeValue = this.onChangeValue.bind(this);
   }
 
   handlePressEnter = e => {
     if (e.key === "Enter") {
-      this.setState({ value: e.target.value });
+      this.setState({ value: e.target.value, isEnter: true });
       axios
         .get(`http://localhost:3001/search/word?search=${e.target.value}`)
         .then(response => {
-          // debugger;
           this.setState({
             results: response.data
           });
@@ -59,7 +60,6 @@ class App extends Component {
 
   render() {
     const { value } = this.state;
-    // const { results } = this.state;
 
     return (
       <Fragment>
@@ -72,11 +72,7 @@ class App extends Component {
                     Home
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink to={`/articles/${article.slug}`}>
-                    {this.props.post.slug}
-                  </NavLink>
-                </li> */}
+
                 {NAVIGATION_MENU.map((item, index) => {
                   return (
                     <li>
@@ -101,8 +97,9 @@ class App extends Component {
                   <Icon circular name="close" onClick={this.emitEmpty} />
 
                   <div>
-                    {/* {this.handlePressEnter && ( */}
-                    {this.state.value.length > 0 && (
+                    <h1>shhsh - {JSON.stringify(this.state.isEnter)}</h1>
+
+                    {this.state.isEnter && this.state.value.length > 0 && (
                       <Redirect
                         to={{
                           pathname: "/results",
@@ -123,6 +120,7 @@ class App extends Component {
               {/* <Route path="/home" render={() => <div>Home</div>} /> */}
               <Route exact path="/" component={Home}></Route>
               <Route path="/article/:slug" component={Article}></Route>
+
               <Route path="/results" component={Results}></Route>
               {NAVIGATION_MENU.map((item, index) => {
                 return (

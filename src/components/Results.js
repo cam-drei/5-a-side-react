@@ -13,9 +13,9 @@ export default class Results extends Component {
   }
 
   render() {
-    console.log("SEARCH RESULTS PROPS", this.props.location.state.results);
-    console.log("SEARCH RESULTS PROPS", this.props.location.state.value);
-    console.log("SEARCH RESULTS URL", window.location.href);
+    console.log("SEARCH RESULTS: RESUTLS", this.props.location.state.results);
+    console.log("SEARCH RESULTS: VALUE", this.props.location.state.value);
+    console.log("SEARCH RESULTS: URL", window.location.href);
     return (
       <Fragment>
         <Container className="container text-inside">
