@@ -11,9 +11,9 @@ class Article extends Component {
   }
 
   componentDidMount() {
-    // debugger;
     axios
-      .get(`http://localhost:3001/articles/${this.props.match.params.id}`)
+      .get(`http://localhost:3001/articles/${this.props.match.params.slug}`)
+
       .then(response => {
         console.log(response);
         this.setState({ article: response.data });

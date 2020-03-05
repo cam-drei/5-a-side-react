@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-// import { useParams } from "react-router-dom";
-
 import { DateOption } from "./Constants.js";
 import { Container } from "semantic-ui-react";
 
@@ -17,13 +15,10 @@ export default class Results extends Component {
   render() {
     console.log("SEARCH RESULTS PROPS", this.props.location.state.results);
     console.log("SEARCH RESULTS PROPS", this.props.location.state.value);
-    // const { slug } = useParams();
-    // console.log(window.location.pathname); //yields: "/js" (where snippets run)
-    console.log(window.location.href);
+    console.log("SEARCH RESULTS URL", window.location.href);
     return (
       <Fragment>
         <Container className="container text-inside">
-          {/* <div>Now showing post {slug}</div> */}
           <h1>Search Results</h1>
           <h3>
             Search Value: <i>"{this.props.location.state.value}"</i>

@@ -17,6 +17,7 @@ import Article from "./components/Article.js";
 import Category from "./components/Category.js";
 import Results from "./components/Results.js";
 import axios from "axios";
+// import { If, Then, ElseIf } from "react-if-elseif-else-render";
 
 const NAVIGATION_MENU = [
   { route: "/tactics", text: "Tactics", catId: 1 },
@@ -71,6 +72,11 @@ class App extends Component {
                     Home
                   </NavLink>
                 </li>
+                {/* <li>
+                  <NavLink to={`/articles/${article.slug}`}>
+                    {this.props.post.slug}
+                  </NavLink>
+                </li> */}
                 {NAVIGATION_MENU.map((item, index) => {
                   return (
                     <li>
@@ -95,7 +101,6 @@ class App extends Component {
                   <Icon circular name="close" onClick={this.emitEmpty} />
 
                   <div>
-                    {/* {this.state.value.length > 0 && ( */}
                     {/* {this.handlePressEnter && ( */}
                     {this.state.value.length > 0 && (
                       <Redirect
@@ -117,7 +122,7 @@ class App extends Component {
             <Switch>
               {/* <Route path="/home" render={() => <div>Home</div>} /> */}
               <Route exact path="/" component={Home}></Route>
-              <Route path="/article/:id" component={Article}></Route>
+              <Route path="/article/:slug" component={Article}></Route>
               <Route path="/results" component={Results}></Route>
               {NAVIGATION_MENU.map((item, index) => {
                 return (

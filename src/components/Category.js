@@ -34,7 +34,7 @@ class Category extends Component {
           {this.state.articles.map((article, index) => {
             return (
               <div key={index}>
-                <Link exact to={`/article/${article.id}`}>
+                <Link exact to={`/article/${article.slug}`}>
                   <h3>{article.title}</h3>
                 </Link>
 
